@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { useRef } from "react"
 
 export function ValueSection() {
   const [selectedProject, setSelectedProject] = useState<{title: string, videoUrl: string} | null>(null)
   const [visibleElements, setVisibleElements] = useState<boolean[]>([])
+  const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Initialize all elements as invisible
@@ -22,6 +24,40 @@ export function ValueSection() {
         })
       }, i * 300) // 300ms delay between each element
     }
+  }, [])
+
+  useEffect(() => {
+    // IntersectionObserver for scroll-based reveal (up and down)
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements((prev) => {
+              const newVisible = [...prev]
+              newVisible[1] = true
+              newVisible[3] = true
+              newVisible[4] = true
+              newVisible[5] = true
+              return newVisible
+            })
+          } else {
+            setVisibleElements((prev) => {
+              const newVisible = [...prev]
+              newVisible[1] = false
+              newVisible[3] = false
+              newVisible[4] = false
+              newVisible[5] = false
+              return newVisible
+            })
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+    return () => observer.disconnect()
   }, [])
   
   const projects = [
@@ -97,7 +133,7 @@ export function ValueSection() {
         </DialogContent>
       </Dialog>
 
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="max-w-6xl mx-auto px-4" ref={sectionRef}>
         <div className="text-center mb-16">
           <h2 className={`text-4xl md:text-5xl font-bold text-black mb-6 transition-all duration-500 transform ${
             visibleElements[1] 

@@ -1,9 +1,10 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 export function WorkExperienceSection() {
   const [visibleElements, setVisibleElements] = useState<boolean[]>([])
+  const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Initialize all elements as invisible
@@ -20,6 +21,34 @@ export function WorkExperienceSection() {
         })
       }, i * 150) // 150ms delay between each element
     }
+  }, [])
+
+  useEffect(() => {
+    // IntersectionObserver for scroll-based reveal (up and down)
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements((prev) => {
+              const newVisible = [...prev]
+              for (let i = 0; i < 14; i++) newVisible[i] = true
+              return newVisible
+            })
+          } else {
+            setVisibleElements((prev) => {
+              const newVisible = [...prev]
+              for (let i = 0; i < 14; i++) newVisible[i] = false
+              return newVisible
+            })
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+    return () => observer.disconnect()
   }, [])
   const experiences = [
     {
@@ -55,7 +84,7 @@ export function WorkExperienceSection() {
   ]
 
   return (
-    <section className="py-20 bg-black">
+    <section ref={sectionRef} className="py-20 bg-black">
       <div className="max-w-6xl mx-auto px-4">
         <div className={`mb-16 transition-all duration-500 transform ${
           visibleElements[0] 

@@ -1,12 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { ChevronDown } from "lucide-react"
 import Link from "next/link"
 
 export function HeroSection() {
   const [visibleElements, setVisibleElements] = useState<boolean[]>([])
+  const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Initialize all elements as invisible
@@ -25,8 +26,36 @@ export function HeroSection() {
     }
   }, [])
 
+  useEffect(() => {
+    // IntersectionObserver for scroll-based reveal (up and down)
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements((prev) => {
+              const newVisible = [...prev]
+              for (let i = 0; i < 5; i++) newVisible[i] = true
+              return newVisible
+            })
+          } else {
+            setVisibleElements((prev) => {
+              const newVisible = [...prev]
+              for (let i = 0; i < 5; i++) newVisible[i] = false
+              return newVisible
+            })
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="min-h-screen bg-black flex flex-col justify-center items-center relative">
+    <section ref={sectionRef} className="min-h-screen bg-black flex flex-col justify-center items-center relative">
       <div className="text-center max-w-4xl mx-auto px-4">
         {/* Profile Image centered, large, circular, with white border, no extra background */}
         <img
