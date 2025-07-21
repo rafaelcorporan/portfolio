@@ -7,7 +7,7 @@
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
-    "pages:build": "next-on-pages build"
+    "pages:build": "npx @cloudflare/next-on-pages"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -62,12 +62,12 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.12",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "postcss": "^8.5",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5",
-    "@cloudflare/next-on-pages": "^1.0.0"
+    "typescript": "^5"
   }
 }
