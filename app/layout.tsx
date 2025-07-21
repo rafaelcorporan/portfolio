@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { Navigation } from "@/components/navigation"
+import { UnicornBackground } from "@/components/unicorn-background"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -21,8 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
-        {/* Unicorn background container */}
-        <div data-us-project="zQ1A4lUhjBbGT4s7DQ6x" style={{ width: '1440px', height: '900px', position: 'fixed', zIndex: -1, top: 0, left: 0 }} />
+        <UnicornBackground />
         <Navigation />
         {children}
       </body>
