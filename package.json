@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "node build.js",
+    "build:next": "next build",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
-    "export": "next build"
+    "export": "next build",
+    "pages:build": "node build.js",
+    "pages:dev": "next dev"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
