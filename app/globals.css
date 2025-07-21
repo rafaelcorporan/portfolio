@@ -100,7 +100,3 @@ html {
   display: none !important;
 }
 
-/* Hide UnicornStudio banner watermark */
-.us-badge, .us-banner, [class*="us-badge"], [class*="us-banner"] {
-  display: none !important;
-}

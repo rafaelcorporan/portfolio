@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { Navigation } from "@/components/navigation"
-import { UnicornBackground } from "@/components/unicorn-background"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -22,7 +21,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
-        <UnicornBackground />
         <Navigation />
         {children}
       </body>
