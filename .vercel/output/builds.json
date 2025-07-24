@@ -3,13 +3,13 @@
   "target": "preview",
   "argv": [
     "/opt/homebrew/Cellar/node/24.3.0/bin/node",
-    "/Users/gundo/Library/Caches/pnpm/dlx/f96e4b8c88a2d8e21a8df3c0a7c54044218d117cf565739e8abb02c80051e3c4/1982c755fb8-10144/node_modules/.pnpm/vercel@44.5.0/node_modules/vercel/dist/vc.js",
+    "/Users/gundo/Desktop/RESUME - - -/IT/Portfolio/node_modules/.pnpm/vercel@44.5.0/node_modules/vercel/dist/vc.js",
     "build"
   ],
   "builds": [
     {
       "require": "@vercel/next",
-      "requirePath": "/Users/gundo/Library/Caches/pnpm/dlx/f96e4b8c88a2d8e21a8df3c0a7c54044218d117cf565739e8abb02c80051e3c4/1982c755fb8-10144/node_modules/.pnpm/@vercel+next@4.10.2/node_modules/@vercel/next/dist/index",
+      "requirePath": "/Users/gundo/Desktop/RESUME - - -/IT/Portfolio/node_modules/.pnpm/@vercel+next@4.10.2/node_modules/@vercel/next/dist/index",
       "apiVersion": 2,
       "src": "package.json",
       "use": "@vercel/next",

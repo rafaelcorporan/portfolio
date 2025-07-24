@@ -2,6 +2,14 @@
   "version": 3,
   "routes": [
     {
+      "src": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$",
+      "headers": {
+        "Location": "/$1"
+      },
+      "status": 308,
+      "continue": true
+    },
+    {
       "src": "/_next/__private/trace",
       "dest": "/404",
       "status": 404,
@@ -10,30 +18,56 @@
     {
       "src": "/404/?",
       "status": 404,
-      "continue": true
-    },
-    {
-      "src": "^(?:/((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/]+\\.\\w+))/$",
-      "headers": {
-        "Location": "/$1"
-      },
-      "status": 308,
+      "continue": true,
       "missing": [
         {
           "type": "header",
-          "key": "x-nextjs-data"
+          "key": "x-prerender-revalidate"
         }
       ]
     },
     {
-      "src": "^(?:/((?!\\.well-known(?:/.*)?)(?:[^/]+/)*[^/\\.]+))$",
+      "src": "/500",
+      "status": 500,
+      "continue": true
+    },
+    {
+      "src": "^/?",
+      "has": [
+        {
+          "type": "header",
+          "key": "rsc"
+        }
+      ],
+      "dest": "/index.rsc",
       "headers": {
-        "Location": "/$1/"
+        "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
       },
-      "status": 308
+      "continue": true,
+      "override": true
+    },
+    {
+      "src": "^/((?!.+\\.rsc).+?)(?:/)?$",
+      "has": [
+        {
+          "type": "header",
+          "key": "rsc"
+        }
+      ],
+      "dest": "/$1.rsc",
+      "headers": {
+        "vary": "RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch"
+      },
+      "continue": true,
+      "override": true
     },
     {
       "handle": "filesystem"
+    },
+    {
+      "src": "/index(\\.action|\\.rsc)",
+      "dest": "/",
+      "continue": true
     },
     {
       "src": "/_next/data/(.*)",
@@ -41,8 +75,24 @@
       "check": true
     },
     {
-      "src": "/_next/data/(.*)",
-      "status": 404
+      "src": "/\\.prefetch\\.rsc$",
+      "dest": "/__index.prefetch.rsc",
+      "check": true
+    },
+    {
+      "src": "/(.+)/\\.prefetch\\.rsc$",
+      "dest": "/$1.prefetch.rsc",
+      "check": true
+    },
+    {
+      "src": "/\\.rsc$",
+      "dest": "/index.rsc",
+      "check": true
+    },
+    {
+      "src": "/(.+)/\\.rsc$",
+      "dest": "/$1.rsc",
+      "check": true
     },
     {
       "handle": "resource"
@@ -61,12 +111,36 @@
       "dest": "$0"
     },
     {
+      "handle": "rewrite"
+    },
+    {
+      "src": "/_next/data/(.*)",
+      "dest": "/404",
+      "status": 404
+    },
+    {
       "handle": "hit"
     },
     {
-      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|pB5tpRP3vbw107aGpS9DB)/.+",
+      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|\\-2XF6Bgc8WQPJyfSvd1Kv)/.+",
       "headers": {
         "cache-control": "public,max-age=31536000,immutable"
+      },
+      "continue": true,
+      "important": true
+    },
+    {
+      "src": "/index(?:/)?",
+      "headers": {
+        "x-matched-path": "/"
+      },
+      "continue": true,
+      "important": true
+    },
+    {
+      "src": "/((?!index$).*?)(?:/)?",
+      "headers": {
+        "x-matched-path": "/$1"
       },
       "continue": true,
       "important": true
@@ -75,9 +149,14 @@
       "handle": "error"
     },
     {
-      "status": 404,
-      "src": ".*",
-      "dest": "/404"
+      "src": "/.*",
+      "dest": "/404",
+      "status": 404
+    },
+    {
+      "src": "/.*",
+      "dest": "/500",
+      "status": 500
     }
   ],
   "overrides": {
@@ -85,25 +164,25 @@
       "path": "404",
       "contentType": "text/html; charset=utf-8"
     },
-    "404/index.html": {
-      "path": "404/index",
+    "500.html": {
+      "path": "500",
       "contentType": "text/html; charset=utf-8"
     },
-    "contact/index.html": {
-      "path": "contact/index",
-      "contentType": "text/html; charset=utf-8"
+    "_error.rsc.json": {
+      "path": "_error.rsc",
+      "contentType": "application/json"
     },
-    "index.html": {
-      "path": "index",
-      "contentType": "text/html; charset=utf-8"
+    "_app.rsc.json": {
+      "path": "_app.rsc",
+      "contentType": "application/json"
     },
-    "portfolio/index.html": {
-      "path": "portfolio/index",
-      "contentType": "text/html; charset=utf-8"
+    "_document.rsc.json": {
+      "path": "_document.rsc",
+      "contentType": "application/json"
     },
-    "resume/index.html": {
-      "path": "resume/index",
-      "contentType": "text/html; charset=utf-8"
+    "404.rsc.json": {
+      "path": "404.rsc",
+      "contentType": "application/json"
     }
   },
   "framework": {
