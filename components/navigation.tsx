@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, ChevronDown } from "lucide-react"
 import Link from "next/link"
@@ -8,6 +8,23 @@ import Link from "next/link"
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [isWorkDropdownOpen, setIsWorkDropdownOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsWorkDropdownOpen(false)
+      }
+    }
+
+    if (isWorkDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isWorkDropdownOpen])
 
   const navItems = [
     { name: "Home", href: "/" },
@@ -17,18 +34,18 @@ export function Navigation() {
   ]
 
   const projects = [
-    { name: "Enterprise Network Monitoring", subtitle: "Real-time VLAN health tracking", href: "#" },
-    { name: "Cloud Migration Portal", subtitle: "Automated cloud workflows", href: "#" },
-    { name: "Secure IoT Platform", subtitle: "Zero-trust device authentication", href: "#" },
-    { name: "Predictive Maintenance", subtitle: "AI-driven predictive analytics", href: "#" },
-    { name: "AI Customer Support", subtitle: "Intelligent chatbot with RAG", href: "#" },
-    { name: "AI Threat Detection", subtitle: "PyTorch-based anomaly detection", href: "#" },
-    { name: "Multi-Factor Authentication", subtitle: "Enhanced security system", href: "#" },
-    { name: "Financial Analytics", subtitle: "Real-time crypto tracking", href: "#" },
-    { name: "URL Shortener - Yuupi", subtitle: "Custom link management", href: "#" },
-    { name: "Online Video Converter", subtitle: "Media processing tool", href: "#" },
-    { name: "IoT Dashboard", subtitle: "Device management interface", href: "#" },
-    { name: "WePay Crypto Wallet", subtitle: "Multi-signature wallet", href: "#" }
+    { name: "Enterprise Network Monitoring", subtitle: "Real-time VLAN health tracking", href: "https://network-dashboard.pages.dev/#/login" },
+    { name: "Cloud Migration Portal", subtitle: "Automated cloud workflows", href: "https://f52b449c.cloud-migration.pages.dev/" },
+    { name: "Secure IoT Platform", subtitle: "Zero-trust device authentication", href: "https://2cfce982.iotmanager.pages.dev/login/" },
+    { name: "Predictive Maintenance", subtitle: "AI-driven predictive analytics", href: "https://predictive-maintenance.pages.dev/" },
+    { name: "AI Customer Support", subtitle: "Intelligent chatbot with RAG", href: "https://aisupport.pages.dev/" },
+    { name: "AI Threat Detection", subtitle: "PyTorch-based anomaly detection", href: "https://security-threat-detection.pages.dev/" },
+    { name: "Data Graphs Converter", subtitle: "CSV to interactive visualizations", href: "https://data-graphs.pages.dev/" },
+    { name: "Financial Analytics", subtitle: "Real-time crypto tracking", href: "https://financial-dash.pages.dev/" },
+    { name: "URL Shortener - Yuupi", subtitle: "Custom link management", href: "https://url-shorter-3ct.pages.dev/login/" },
+    { name: "Online Video Converter", subtitle: "Media processing tool", href: "https://video-converter-bg8.pages.dev/" },
+    { name: "IoT Dashboard", subtitle: "Device management interface", href: "https://iot-dash.pages.dev/" },
+    { name: "WePay Crypto Wallet", subtitle: "Multi-signature wallet", href: "https://wepay-crypto.pages.dev/" }
   ]
 
   return (
@@ -48,23 +65,29 @@ export function Navigation() {
             
             {/* Work Dropdown */}
             <div 
+              ref={dropdownRef}
               className="relative"
               onMouseEnter={() => setIsWorkDropdownOpen(true)}
-              onMouseLeave={() => setIsWorkDropdownOpen(false)}
             >
-              <button className="text-gray-300 hover:text-white transition-colors flex items-center gap-1">
+              <button 
+                className="text-gray-300 hover:text-white transition-colors flex items-center gap-1"
+                onClick={() => setIsWorkDropdownOpen(!isWorkDropdownOpen)}
+              >
                 Work
-                <ChevronDown className="w-4 h-4" />
+                <ChevronDown className={`w-4 h-4 transition-transform ${isWorkDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               
               {isWorkDropdownOpen && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[800px] bg-black/95 backdrop-blur-sm border border-gray-700 rounded-lg p-6 shadow-2xl">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[800px] bg-black/95 backdrop-blur-sm border border-gray-700 rounded-lg p-6 shadow-2xl z-50">
                   <div className="grid grid-cols-3 gap-6">
                     {projects.map((project, index) => (
                       <Link 
                         key={index}
                         href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="group block hover:bg-gray-800/50 p-3 rounded transition-colors"
+                        onClick={() => setIsWorkDropdownOpen(false)}
                       >
                         <h4 className="text-white text-xs font-medium group-hover:text-gray-200 transition-colors">
                           {project.name}
