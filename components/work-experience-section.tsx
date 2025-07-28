@@ -3,13 +3,10 @@
 import { useState, useEffect, useRef } from "react"
 
 export function WorkExperienceSection() {
-  const [visibleElements, setVisibleElements] = useState<boolean[]>([])
+  const [visibleElements, setVisibleElements] = useState<boolean[]>(new Array(14).fill(false))
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Initialize all elements as invisible
-    setVisibleElements(new Array(14).fill(false)) // 1 heading + 6 exp cards + 1 heading + 6 industry cards
-    
     // Animate elements appearing one by one
     const elementsCount = 14
     for (let i = 0; i < elementsCount; i++) {

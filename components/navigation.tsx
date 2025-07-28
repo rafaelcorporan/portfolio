@@ -8,6 +8,7 @@ import Link from "next/link"
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [isWorkDropdownOpen, setIsWorkDropdownOpen] = useState(false)
+  const [isMobileWorkOpen, setIsMobileWorkOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -119,7 +120,12 @@ export function Navigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <Button variant="ghost" size="icon" className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+          <Button variant="ghost" size="icon" className="md:hidden text-white" onClick={() => {
+            setIsOpen(!isOpen)
+            if (isOpen) {
+              setIsMobileWorkOpen(false)
+            }
+          }}>
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </Button>
         </div>
@@ -127,16 +133,73 @@ export function Navigation() {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden border-t border-gray-700 py-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="block text-gray-300 hover:text-white transition-colors py-2"
-                onClick={() => setIsOpen(false)}
+            {/* Home Link */}
+            <Link
+              href="/"
+              className="block text-gray-300 hover:text-white transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              Home
+            </Link>
+            
+            {/* Work Dropdown for Mobile */}
+            <div className="py-2">
+              <button 
+                className="w-full text-left text-gray-300 hover:text-white transition-colors flex items-center justify-between"
+                onClick={() => setIsMobileWorkOpen(!isMobileWorkOpen)}
               >
-                {item.name}
-              </Link>
-            ))}
+                Work
+                <ChevronDown className={`w-4 h-4 transition-transform ${isMobileWorkOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {isMobileWorkOpen && (
+                <div className="mt-2 pl-4 space-y-2">
+                  {projects.map((project, index) => (
+                    <Link 
+                      key={index}
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-gray-400 hover:text-white transition-colors py-2 text-sm"
+                      onClick={() => {
+                        setIsOpen(false)
+                        setIsMobileWorkOpen(false)
+                      }}
+                    >
+                      <div className="font-medium">{project.name}</div>
+                      <div className="text-xs text-gray-500 mt-1">{project.subtitle}</div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+            
+            {/* Resume Link */}
+            <Link
+              href="/resume"
+              className="block text-gray-300 hover:text-white transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              Resume
+            </Link>
+            
+            {/* Portfolio Link */}
+            <Link
+              href="/portfolio"
+              className="block text-gray-300 hover:text-white transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              Portfolio
+            </Link>
+            
+            {/* Contact Link */}
+            <Link
+              href="/contact"
+              className="block text-gray-300 hover:text-white transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact
+            </Link>
           </div>
         )}
       </div>
