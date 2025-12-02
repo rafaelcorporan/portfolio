@@ -100,3 +100,38 @@ html {
   display: none !important;
 }
 
+/* Hide Next.js version indicator at ALL bottom corners - Aggressive removal */
+a[href*="nextjs.org"],
+a[href*="nextjs.org"] ~ *,
+a[href*="vercel.com"],
+[data-nextjs-toast],
+.nextjs-toast,
+#__next-build-watcher,
+#__next-dev-overlay,
+.__next-dev-overlay,
+div[style*="position: fixed"][style*="bottom"],
+div[style*="position: fixed"][style*="left"],
+div[style*="position: fixed"][style*="right"],
+div[style*="position:fixed"][style*="bottom"],
+div[style*="position:fixed"][style*="left"],
+div[style*="position:fixed"][style*="right"],
+div[style*="position: fixed"][style*="z-index"]:has(a[href*="nextjs.org"]),
+div[style*="position: fixed"][style*="z-index"]:has(a[href*="vercel.com"]),
+div[style*="position:fixed"][style*="z-index"]:has(a[href*="nextjs.org"]),
+div[style*="position:fixed"][style*="z-index"]:has(a[href*="vercel.com"]),
+a[href*="nextjs.org"]:has(img),
+a[href*="nextjs.org"] img,
+a[href*="vercel.com"] img,
+div:has(a[href*="nextjs.org"]),
+div:has(a[href*="vercel.com"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+

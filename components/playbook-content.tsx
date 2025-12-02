@@ -21,7 +21,7 @@ const projects = [
   },
   {
     id: "cloud-migration-portal",
-    title: "Cloud Migration Management Portal", 
+    title: "Cloud Migration Management Portal",
     subtitle: "Automated cloud workflows",
     category: "Infrastructure & Networking",
     description: "Automated cloud migration workflows with infrastructure as code",
@@ -34,7 +34,7 @@ const projects = [
     id: "secure-iot-platform",
     title: "Secure IoT Device Management Platform",
     subtitle: "Zero-trust device authentication",
-    category: "Infrastructure & Networking", 
+    category: "Infrastructure & Networking",
     description: "Zero-trust device authentication with TLS/DTLS encryption",
     technologies: ["AWS IoT Core", "TLS/DTLS", "React", "Node.js"],
     icon: Shield,
@@ -100,7 +100,7 @@ const projects = [
     id: "url-shorter-yuupi",
     title: "URL Shorter - Yuupi",
     subtitle: "High-performance shortener",
-    category: "Web & Utilities", 
+    category: "Web & Utilities",
     description: "High-performance URL shortener with 2ms redirect latency",
     technologies: ["Node.js", "Redis", "Rate Limiting", "Docker"],
     icon: Link,
@@ -146,8 +146,8 @@ export function PlaybookContent() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
   const [isVideoOpen, setIsVideoOpen] = useState(false)
   const [visibleElements, setVisibleElements] = useState<boolean[]>([])
-  const [visibleSections, setVisibleSections] = useState<{[key: string]: boolean}>({})
-  
+  const [visibleSections, setVisibleSections] = useState<{ [key: string]: boolean }>({})
+
   const infrastructureRef = useRef<HTMLDivElement>(null)
   const aiRef = useRef<HTMLDivElement>(null)
   const webRef = useRef<HTMLDivElement>(null)
@@ -155,7 +155,7 @@ export function PlaybookContent() {
   useEffect(() => {
     // Initialize hero elements as invisible
     setVisibleElements(new Array(3).fill(false))
-    
+
     // Animate hero elements appearing one by one
     for (let i = 0; i < 3; i++) {
       setTimeout(() => {
@@ -174,7 +174,7 @@ export function PlaybookContent() {
           if (entry.isIntersecting) {
             const sectionId = entry.target.getAttribute('data-section')
             if (sectionId) {
-              setVisibleSections(prev => ({...prev, [sectionId]: true}))
+              setVisibleSections(prev => ({ ...prev, [sectionId]: true }))
             }
           }
         })
@@ -203,23 +203,32 @@ export function PlaybookContent() {
 
   return (
     <>
-      <section className="min-h-screen flex flex-col justify-center items-center relative">
-        <div className="text-center max-w-4xl mx-auto px-4 mb-16">
-          <div className={`mb-8 transition-all duration-500 transform ${
-            visibleElements[0] 
-              ? 'translate-y-0 opacity-100' 
+      <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
+        {/* Spline Background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <iframe
+            src='https://my.spline.design/particlesmoment-l54N96oF3HpVbO2RBbCoA7Vi/'
+            frameBorder='0'
+            width='100%'
+            height='100%'
+            className="w-full h-full"
+          ></iframe>
+        </div>
+
+        <div className="text-center max-w-4xl mx-auto px-4 mb-16 relative z-10">
+          <div className={`mb-8 transition-all duration-500 transform ${visibleElements[0]
+              ? 'translate-y-0 opacity-100'
               : 'translate-y-10 opacity-0'
-          }`}>
-            <span className="text-gray-400 text-sm font-medium tracking-wider uppercase border border-gray-600 px-4 py-2 rounded">
+            }`}>
+            <span className="text-gray-400 text-sm font-medium tracking-wider uppercase border border-gray-600 px-4 py-2 rounded bg-black/30 backdrop-blur-sm">
               PORTFOLIO
             </span>
           </div>
 
-          <h1 className={`text-5xl md:text-6xl font-bold text-white mb-8 leading-tight transition-all duration-500 transform ${
-            visibleElements[1] 
-              ? 'translate-y-0 opacity-100' 
+          <h1 className={`text-5xl md:text-6xl font-bold text-white mb-8 leading-tight transition-all duration-500 transform ${visibleElements[1]
+              ? 'translate-y-0 opacity-100'
               : 'translate-y-10 opacity-0'
-          }`}>
+            }`}>
             Portfolio Projects
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
@@ -227,30 +236,28 @@ export function PlaybookContent() {
             </span>
           </h1>
 
-          <p className={`text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed transition-all duration-500 transform ${
-            visibleElements[2] 
-              ? 'translate-y-0 opacity-100' 
+          <p className={`text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed transition-all duration-500 transform ${visibleElements[2]
+              ? 'translate-y-0 opacity-100'
               : 'translate-y-10 opacity-0'
-          }`}>
-            Explore 12 comprehensive projects showcasing expertise across networking, cloud infrastructure, 
+            }`}>
+            Explore 12 comprehensive projects showcasing expertise across networking, cloud infrastructure,
             AI integration, and full-stack development. Click any project to view a detailed demonstration.
           </p>
         </div>
 
-        <ChevronDown className="absolute bottom-8 w-6 h-6 text-gray-400 animate-bounce" />
+        <ChevronDown className="absolute bottom-8 w-6 h-6 text-gray-400 animate-bounce z-10" />
       </section>
 
       {/* Projects Grid Section */}
       <section className="py-20 bg-gray-950">
         <div className="max-w-7xl mx-auto px-4">
-          
+
           {/* Infrastructure & Networking Projects */}
           <div className="mb-16" ref={infrastructureRef} data-section="infrastructure">
-            <h2 className={`text-3xl font-bold text-white mb-8 text-center transition-all duration-700 transform ${
-              visibleSections.infrastructure 
-                ? 'translate-y-0 opacity-100' 
+            <h2 className={`text-3xl font-bold text-white mb-8 text-center transition-all duration-700 transform ${visibleSections.infrastructure
+                ? 'translate-y-0 opacity-100'
                 : 'translate-y-10 opacity-0'
-            }`}>
+              }`}>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
                 Infrastructure & Networking
               </span>
@@ -259,57 +266,55 @@ export function PlaybookContent() {
               {projects
                 .filter(project => project.category === "Infrastructure & Networking")
                 .map((project, index) => (
-                <Card 
-                  key={project.id}
-                  className={`bg-gray-900/50 border-gray-800 hover:border-gray-600 transition-all duration-700 cursor-pointer group hover:bg-gray-900/80 backdrop-blur-sm transform ${
-                    visibleSections.infrastructure 
-                      ? (index < 2 ? 'translate-x-0 opacity-100' : 'translate-x-0 opacity-100')
-                      : (index < 2 ? '-translate-x-10 opacity-0' : 'translate-x-10 opacity-0')
-                  }`}
-                  style={{ transitionDelay: visibleSections.infrastructure ? `${index * 200}ms` : '0ms' }}
-                  onClick={() => handleProjectClick(project)}
-                >
-                  <CardContent className="p-10 flex flex-col items-start justify-center min-h-[350px] relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-opacity duration-500">
-                      <Image
-                        src={project.imageUrl}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gray-900/80 group-hover:bg-gray-900/25 transition-colors duration-500" />
-                    
-                    <div className="relative z-10 mb-8">
-                      <project.icon className="w-16 h-16 text-gray-400 group-hover:text-white transition-colors duration-300" />
-                    </div>
-                    
-                    <div className="relative z-10 space-y-4 flex-1">
-                      <h3 className="text-3xl font-bold text-white group-hover:text-gray-100 transition-colors">
-                        {project.title}
-                      </h3>
-                      
-                      <p className="text-gray-500 text-lg group-hover:text-gray-400 transition-colors">
-                        {project.subtitle}
-                      </p>
-                    </div>
+                  <Card
+                    key={project.id}
+                    className={`bg-gray-900/50 border-gray-800 hover:border-gray-600 transition-all duration-700 cursor-pointer group hover:bg-gray-900/80 backdrop-blur-sm transform ${visibleSections.infrastructure
+                        ? (index < 2 ? 'translate-x-0 opacity-100' : 'translate-x-0 opacity-100')
+                        : (index < 2 ? '-translate-x-10 opacity-0' : 'translate-x-10 opacity-0')
+                      }`}
+                    style={{ transitionDelay: visibleSections.infrastructure ? `${index * 200}ms` : '0ms' }}
+                    onClick={() => handleProjectClick(project)}
+                  >
+                    <CardContent className="p-10 flex flex-col items-start justify-center min-h-[350px] relative overflow-hidden">
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-opacity duration-500">
+                        <Image
+                          src={project.imageUrl}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gray-900/80 group-hover:bg-gray-900/25 transition-colors duration-500" />
 
-                    <div className="relative z-10 mt-8 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                      <Play className="w-8 h-8 text-gray-400" />
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                      <div className="relative z-10 mb-8">
+                        <project.icon className="w-16 h-16 text-gray-400 group-hover:text-white transition-colors duration-300" />
+                      </div>
+
+                      <div className="relative z-10 space-y-4 flex-1">
+                        <h3 className="text-3xl font-bold text-white group-hover:text-gray-100 transition-colors">
+                          {project.title}
+                        </h3>
+
+                        <p className="text-gray-500 text-lg group-hover:text-gray-400 transition-colors">
+                          {project.subtitle}
+                        </p>
+                      </div>
+
+                      <div className="relative z-10 mt-8 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <Play className="w-8 h-8 text-gray-400" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
             </div>
           </div>
 
           {/* AI & Automation Projects */}
           <div className="mb-16" ref={aiRef} data-section="ai">
-            <h2 className={`text-3xl font-bold text-white mb-8 text-center transition-all duration-700 transform ${
-              visibleSections.ai 
-                ? 'translate-y-0 opacity-100' 
+            <h2 className={`text-3xl font-bold text-white mb-8 text-center transition-all duration-700 transform ${visibleSections.ai
+                ? 'translate-y-0 opacity-100'
                 : 'translate-y-10 opacity-0'
-            }`}>
+              }`}>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
                 AI & Automation
               </span>
@@ -318,57 +323,55 @@ export function PlaybookContent() {
               {projects
                 .filter(project => project.category === "AI & Automation")
                 .map((project, index) => (
-                <Card 
-                  key={project.id}
-                  className={`bg-gray-900/50 border-gray-800 hover:border-gray-600 transition-all duration-700 cursor-pointer group hover:bg-gray-900/80 backdrop-blur-sm transform ${
-                    visibleSections.ai 
-                      ? 'translate-y-0 opacity-100' 
-                      : 'translate-y-10 opacity-0'
-                  }`}
-                  style={{ transitionDelay: visibleSections.ai ? `${index * 200}ms` : '0ms' }}
-                  onClick={() => handleProjectClick(project)}
-                >
-                  <CardContent className="p-8 flex flex-col items-start justify-center min-h-[320px] relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-opacity duration-500">
-                      <Image
-                        src={project.imageUrl}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gray-900/80 group-hover:bg-gray-900/25 transition-colors duration-500" />
-                    
-                    <div className="relative z-10 mb-6">
-                      <project.icon className="w-14 h-14 text-gray-400 group-hover:text-white transition-colors duration-300" />
-                    </div>
-                    
-                    <div className="relative z-10 space-y-3 flex-1">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-gray-100 transition-colors">
-                        {project.title}
-                      </h3>
-                      
-                      <p className="text-gray-500 text-base group-hover:text-gray-400 transition-colors">
-                        {project.subtitle}
-                      </p>
-                    </div>
+                  <Card
+                    key={project.id}
+                    className={`bg-gray-900/50 border-gray-800 hover:border-gray-600 transition-all duration-700 cursor-pointer group hover:bg-gray-900/80 backdrop-blur-sm transform ${visibleSections.ai
+                        ? 'translate-y-0 opacity-100'
+                        : 'translate-y-10 opacity-0'
+                      }`}
+                    style={{ transitionDelay: visibleSections.ai ? `${index * 200}ms` : '0ms' }}
+                    onClick={() => handleProjectClick(project)}
+                  >
+                    <CardContent className="p-8 flex flex-col items-start justify-center min-h-[320px] relative overflow-hidden">
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-opacity duration-500">
+                        <Image
+                          src={project.imageUrl}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="absolute inset-0 bg-gray-900/80 group-hover:bg-gray-900/25 transition-colors duration-500" />
 
-                    <div className="relative z-10 mt-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                      <Play className="w-7 h-7 text-gray-400" />
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                      <div className="relative z-10 mb-6">
+                        <project.icon className="w-14 h-14 text-gray-400 group-hover:text-white transition-colors duration-300" />
+                      </div>
+
+                      <div className="relative z-10 space-y-3 flex-1">
+                        <h3 className="text-2xl font-bold text-white group-hover:text-gray-100 transition-colors">
+                          {project.title}
+                        </h3>
+
+                        <p className="text-gray-500 text-base group-hover:text-gray-400 transition-colors">
+                          {project.subtitle}
+                        </p>
+                      </div>
+
+                      <div className="relative z-10 mt-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <Play className="w-7 h-7 text-gray-400" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
             </div>
           </div>
 
           {/* Web & Utilities + Blockchain & IoT Projects */}
           <div className="mb-16" ref={webRef} data-section="web">
-            <h2 className={`text-3xl font-bold text-white mb-8 text-center transition-all duration-700 transform ${
-              visibleSections.web 
-                ? 'translate-y-0 opacity-100' 
+            <h2 className={`text-3xl font-bold text-white mb-8 text-center transition-all duration-700 transform ${visibleSections.web
+                ? 'translate-y-0 opacity-100'
                 : 'translate-y-10 opacity-0'
-            }`}>
+              }`}>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
                 Web & Utilities + Blockchain & IoT
               </span>
@@ -384,48 +387,46 @@ export function PlaybookContent() {
                   } else { // Second row (cards 3+) - from right  
                     animationClass = visibleSections.web ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
                   }
-                  
-                  return (
-                <Card 
-                  key={project.id}
-                  className={`bg-gray-900/50 border-gray-800 hover:border-gray-600 transition-all duration-700 cursor-pointer group hover:bg-gray-900/80 backdrop-blur-sm transform ${animationClass} ${
-                    project.id === "financial-dashboard" || project.id === "url-shorter-yuupi" || project.id === "video-converter" ? "lg:col-span-2" : ""
-                  } ${
-                    project.id === "wepay-crypto-wallet" || project.id === "iot-dashboard" ? "lg:col-span-3" : ""
-                  }`}
-                  style={{ transitionDelay: visibleSections.web ? `${index * 150}ms` : '0ms' }}
-                  onClick={() => handleProjectClick(project)}
-                >
-                  <CardContent className="p-8 flex flex-col items-start justify-center min-h-[300px] relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-opacity duration-500">
-                      <Image
-                        src={project.imageUrl}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gray-900/80 group-hover:bg-gray-900/25 transition-colors duration-500" />
-                    
-                    <div className="relative z-10 mb-6">
-                      <project.icon className="w-12 h-12 text-gray-400 group-hover:text-white transition-colors duration-300" />
-                    </div>
-                    
-                    <div className="relative z-10 space-y-3 flex-1">
-                      <h3 className="text-2xl font-bold text-white group-hover:text-gray-100 transition-colors">
-                        {project.title}
-                      </h3>
-                      
-                      <p className="text-gray-500 text-base group-hover:text-gray-400 transition-colors">
-                        {project.subtitle}
-                      </p>
-                    </div>
 
-                    <div className="relative z-10 mt-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                      <Play className="w-6 h-6 text-gray-400" />
-                    </div>
-                  </CardContent>
-                </Card>
+                  return (
+                    <Card
+                      key={project.id}
+                      className={`bg-gray-900/50 border-gray-800 hover:border-gray-600 transition-all duration-700 cursor-pointer group hover:bg-gray-900/80 backdrop-blur-sm transform ${animationClass} ${project.id === "financial-dashboard" || project.id === "url-shorter-yuupi" || project.id === "video-converter" ? "lg:col-span-2" : ""
+                        } ${project.id === "wepay-crypto-wallet" || project.id === "iot-dashboard" ? "lg:col-span-3" : ""
+                        }`}
+                      style={{ transitionDelay: visibleSections.web ? `${index * 150}ms` : '0ms' }}
+                      onClick={() => handleProjectClick(project)}
+                    >
+                      <CardContent className="p-8 flex flex-col items-start justify-center min-h-[300px] relative overflow-hidden">
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-70 transition-opacity duration-500">
+                          <Image
+                            src={project.imageUrl}
+                            alt={project.title}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div className="absolute inset-0 bg-gray-900/80 group-hover:bg-gray-900/25 transition-colors duration-500" />
+
+                        <div className="relative z-10 mb-6">
+                          <project.icon className="w-12 h-12 text-gray-400 group-hover:text-white transition-colors duration-300" />
+                        </div>
+
+                        <div className="relative z-10 space-y-3 flex-1">
+                          <h3 className="text-2xl font-bold text-white group-hover:text-gray-100 transition-colors">
+                            {project.title}
+                          </h3>
+
+                          <p className="text-gray-500 text-base group-hover:text-gray-400 transition-colors">
+                            {project.subtitle}
+                          </p>
+                        </div>
+
+                        <div className="relative z-10 mt-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                          <Play className="w-6 h-6 text-gray-400" />
+                        </div>
+                      </CardContent>
+                    </Card>
                   )
                 })}
             </div>
@@ -445,7 +446,7 @@ export function PlaybookContent() {
               >
                 <X className="w-5 h-5 text-white" />
               </button>
-              
+
               <div className="p-6 border-b border-gray-700">
                 <h2 className="text-2xl font-bold text-white mb-2">{selectedProject.title}</h2>
                 <p className="text-gray-400 mb-4">{selectedProject.description}</p>
@@ -457,7 +458,7 @@ export function PlaybookContent() {
                   ))}
                 </div>
               </div>
-              
+
               <div className="relative bg-black flex items-center justify-center">
                 <video
                   className="w-full h-[400px] object-contain"

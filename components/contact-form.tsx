@@ -34,10 +34,44 @@ export function ContactForm() {
     { title: "DevOps Automation", videoUrl: "/8.webm" }
   ]
 
+  const [validationErrors, setValidationErrors] = useState<{
+    name?: string
+    email?: string
+    message?: string
+  }>({})
+
+  const validateForm = () => {
+    const errors: { name?: string; email?: string; message?: string } = {}
+
+    if (!formData.name.trim()) {
+      errors.name = 'Name is required'
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Please enter a valid email address'
+    }
+
+    if (!formData.message.trim()) {
+      errors.message = 'Message is required'
+    }
+
+    setValidationErrors(errors)
+    return Object.keys(errors).length === 0
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validate form before submission
+    if (!validateForm()) {
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitStatus('idle')
+    setValidationErrors({})
 
     try {
       // Initialize EmailJS here to avoid SSR issues
@@ -58,6 +92,7 @@ export function ContactForm() {
 
       setSubmitStatus('success')
       setFormData({ name: '', email: '', message: '' })
+      setValidationErrors({})
     } catch (error) {
       console.error('EmailJS error:', error)
       setSubmitStatus('error')
@@ -88,28 +123,65 @@ export function ContactForm() {
                 <Input
                   placeholder="Name"
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="bg-white border-gray-300 text-black h-12 rounded-lg"
+                  onChange={(e) => {
+                    setFormData({ ...formData, name: e.target.value })
+                    if (validationErrors.name) {
+                      setValidationErrors({ ...validationErrors, name: undefined })
+                    }
+                  }}
+                  className={`bg-white border-gray-300 text-black h-12 rounded-lg ${
+                    validationErrors.name ? 'border-red-500' : ''
+                  }`}
+                  required
                 />
                 <div className="absolute right-3 top-3 w-6 h-6 bg-red-500 rounded flex items-center justify-center">
                   <span className="text-white text-xs font-bold">*</span>
                 </div>
+                {validationErrors.name && (
+                  <p className="text-red-400 text-xs mt-1">{validationErrors.name}</p>
+                )}
               </div>
-              <Input
-                type="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="bg-white border-gray-300 text-black h-12 rounded-lg"
-              />
+              <div>
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={(e) => {
+                    setFormData({ ...formData, email: e.target.value })
+                    if (validationErrors.email) {
+                      setValidationErrors({ ...validationErrors, email: undefined })
+                    }
+                  }}
+                  className={`bg-white border-gray-300 text-black h-12 rounded-lg ${
+                    validationErrors.email ? 'border-red-500' : ''
+                  }`}
+                  required
+                />
+                {validationErrors.email && (
+                  <p className="text-red-400 text-xs mt-1">{validationErrors.email}</p>
+                )}
+              </div>
             </div>
-            <Textarea
-              placeholder="Message"
-              rows={6}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="bg-white border-gray-300 text-black rounded-lg"
-            />
+            <div>
+              <Textarea
+                placeholder="Message"
+                rows={6}
+                value={formData.message}
+                onChange={(e) => {
+                  setFormData({ ...formData, message: e.target.value })
+                  if (validationErrors.message) {
+                    setValidationErrors({ ...validationErrors, message: undefined })
+                  }
+                }}
+                className={`bg-white border-gray-300 text-black rounded-lg ${
+                  validationErrors.message ? 'border-red-500' : ''
+                }`}
+                required
+              />
+              {validationErrors.message && (
+                <p className="text-red-400 text-xs mt-1">{validationErrors.message}</p>
+              )}
+            </div>
             <Button 
               type="submit" 
               disabled={isSubmitting}

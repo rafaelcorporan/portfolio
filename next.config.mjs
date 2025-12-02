@@ -11,6 +11,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Disable Next.js dev indicators
+  // Disable Next.js dev indicators
+  devIndicators: false,
+  // Disable powered by header
+  poweredByHeader: false,
 }
 
 export default nextConfig
