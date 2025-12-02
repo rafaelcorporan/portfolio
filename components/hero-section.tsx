@@ -68,7 +68,7 @@ export function HeroSection() {
           <img
             src="/profile.png"
             alt="Profile"
-            className={`w-60 h-60 mx-auto mb-8 rounded-full object-cover transition-all duration-500 transform ${visibleElements[0]
+            className={`w-44 h-44 mx-auto mb-8 rounded-full object-cover transition-all duration-500 transform ${visibleElements[0]
               ? 'translate-y-0 opacity-100'
               : 'translate-y-10 opacity-0'
               }`}
