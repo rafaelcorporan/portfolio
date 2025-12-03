@@ -15,7 +15,7 @@ export function ContactForm() {
     email: "",
     message: "",
   })
-  const [selectedProject, setSelectedProject] = useState<{title: string, videoUrl: string} | null>(null)
+  const [selectedProject, setSelectedProject] = useState<{ title: string, videoUrl: string } | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
@@ -63,7 +63,7 @@ export function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Validate form before submission
     if (!validateForm()) {
       return
@@ -76,7 +76,7 @@ export function ContactForm() {
     try {
       // Initialize EmailJS here to avoid SSR issues
       emailjs.init('STHfOFB5LJzn3I9Jn')
-      
+
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
@@ -105,8 +105,8 @@ export function ContactForm() {
     <section className="py-20">
       <div className="max-w-4xl mx-auto px-4">
         <div className="flex justify-end items-center mb-12">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             className="border-gray-600 text-gray-300 bg-transparent"
             onClick={() => window.open('https://www.linkedin.com/in/rafaelcorporan/', '_blank')}
           >
@@ -129,9 +129,8 @@ export function ContactForm() {
                       setValidationErrors({ ...validationErrors, name: undefined })
                     }
                   }}
-                  className={`bg-white border-gray-300 text-black h-12 rounded-lg ${
-                    validationErrors.name ? 'border-red-500' : ''
-                  }`}
+                  className={`bg-white border-gray-300 text-black h-12 rounded-lg ${validationErrors.name ? 'border-red-500' : ''
+                    }`}
                   required
                 />
                 <div className="absolute right-3 top-3 w-6 h-6 bg-red-500 rounded flex items-center justify-center">
@@ -152,9 +151,8 @@ export function ContactForm() {
                       setValidationErrors({ ...validationErrors, email: undefined })
                     }
                   }}
-                  className={`bg-white border-gray-300 text-black h-12 rounded-lg ${
-                    validationErrors.email ? 'border-red-500' : ''
-                  }`}
+                  className={`bg-white border-gray-300 text-black h-12 rounded-lg ${validationErrors.email ? 'border-red-500' : ''
+                    }`}
                   required
                 />
                 {validationErrors.email && (
@@ -173,29 +171,28 @@ export function ContactForm() {
                     setValidationErrors({ ...validationErrors, message: undefined })
                   }
                 }}
-                className={`bg-white border-gray-300 text-black rounded-lg ${
-                  validationErrors.message ? 'border-red-500' : ''
-                }`}
+                className={`bg-white border-gray-300 text-black rounded-lg ${validationErrors.message ? 'border-red-500' : ''
+                  }`}
                 required
               />
               {validationErrors.message && (
                 <p className="text-red-400 text-xs mt-1">{validationErrors.message}</p>
               )}
             </div>
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               disabled={isSubmitting}
               className="w-full bg-white text-black hover:bg-gray-100 h-12 rounded-lg font-medium disabled:opacity-50"
             >
               {isSubmitting ? 'Sending...' : 'Send'}
             </Button>
-            
+
             {submitStatus === 'success' && (
               <div className="text-green-400 text-center mt-4">
                 ✅ Message sent successfully! I'll get back to you soon.
               </div>
             )}
-            
+
             {submitStatus === 'error' && (
               <div className="text-red-400 text-center mt-4">
                 ❌ Failed to send message. Please try again or contact me directly.
@@ -207,7 +204,7 @@ export function ContactForm() {
         <div className="text-center mb-16">
           <h3 className="text-4xl font-bold text-white mb-4">Resume</h3>
           <p className="text-gray-400 mb-8">Read about my full story in the resume</p>
-          <Button 
+          <Button
             className="bg-white text-black hover:bg-gray-100 px-8 py-3 rounded-full font-medium"
             onClick={() => {
               const link = document.createElement('a')
@@ -227,8 +224,8 @@ export function ContactForm() {
           <div className="relative">
             <div className="flex animate-scroll whitespace-nowrap">
               {[...projects, ...projects, ...projects].map((project, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="text-white font-medium text-sm md:text-base mx-8 opacity-60 flex-shrink-0 cursor-pointer hover:opacity-100 hover:scale-[1.3] hover:font-bold transition-all duration-300 hover:text-white"
                   onClick={() => setSelectedProject(project)}
                 >

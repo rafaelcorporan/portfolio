@@ -63,7 +63,7 @@ export function HeroSection() {
       </div>
 
       <div className="text-center max-w-4xl mx-auto px-4 relative z-10 pointer-events-none">
-        {/* Profile Image centered, large, circular, with white border, no extra background */}
+        {/* Profile Image */}
         <div className="pointer-events-auto inline-block">
           <img
             src="/profile.png"
@@ -80,26 +80,31 @@ export function HeroSection() {
           : 'translate-y-10 opacity-0'
           }`}>I'm Rafael.</h1>
 
-        <p className={`text-xl text-gray-300 mb-6 transition-all duration-500 transform ${visibleElements[2]
+        <h2 className={`text-2xl md:text-3xl font-semibold text-gray-200 mb-6 transition-all duration-500 transform ${visibleElements[2]
           ? 'translate-y-0 opacity-100'
           : 'translate-y-10 opacity-0'
-          }`}>I build technical solutions for meaningful impact</p>
+          }`}>Full Stack Developer & AI Integration Specialist</h2>
 
-        <p className={`text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed transition-all duration-500 transform ${visibleElements[3]
+        <p className={`text-lg text-gray-300 mb-8 max-w-2xl mx-auto transition-all duration-500 transform ${visibleElements[3]
           ? 'translate-y-0 opacity-100'
           : 'translate-y-10 opacity-0'
           }`}>
-          This portfolio showcases my technical expertise, methodologies, and outcomes in crafting exceptional
-          infrastructure and AI solutions.
+          Building complete solutions: APIs, databases, cloud infrastructure, AI features, and intuitive frontends.
+          Expert in modern frameworks and AI/automation (n8n). Bridging complex challenges and business outcomes.
         </p>
 
-        <div className={`transition-all duration-500 transform pointer-events-auto ${visibleElements[4]
+        <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-500 transform pointer-events-auto ${visibleElements[4]
           ? 'translate-y-0 opacity-100'
           : 'translate-y-10 opacity-0'
           }`}>
-          <Link href="/portfolio">
+          <Link href="/skills">
             <Button className="bg-white text-black hover:bg-gray-100 px-8 py-3 rounded-full font-medium">
-              Show Portfolio
+              Explore My Skill
+            </Button>
+          </Link>
+          <Link href="/portfolio">
+            <Button variant="outline" className="border-white text-white hover:bg-white/10 bg-transparent px-8 py-3 rounded-full font-medium">
+              Portfolio
             </Button>
           </Link>
         </div>

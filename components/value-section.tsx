@@ -5,14 +5,14 @@ import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { useRef } from "react"
 
 export function ValueSection() {
-  const [selectedProject, setSelectedProject] = useState<{title: string, videoUrl: string} | null>(null)
+  const [selectedProject, setSelectedProject] = useState<{ title: string, videoUrl: string } | null>(null)
   const [visibleElements, setVisibleElements] = useState<boolean[]>([])
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Initialize all elements as invisible
     setVisibleElements(new Array(6).fill(false))
-    
+
     // Animate elements appearing one by one
     const elementsCount = 6
     for (let i = 0; i < elementsCount; i++) {
@@ -59,7 +59,7 @@ export function ValueSection() {
     }
     return () => observer.disconnect()
   }, [])
-  
+
   const projects = [
     { title: "Enterprise Network Monitoring", videoUrl: "/1.webm" },
     { title: "AI Customer Support", videoUrl: "/5.webm" },
@@ -78,16 +78,15 @@ export function ValueSection() {
   return (
     <section id="value" className="py-20 bg-white">
       {/* Animated Projects Banner */}
-      <div className={`bg-black py-10 mb-16 overflow-hidden transition-all duration-500 transform ${
-        visibleElements[0] 
-          ? 'translate-y-0 opacity-100' 
+      <div id="projects" className={`bg-black py-10 mb-16 overflow-hidden transition-all duration-500 transform ${visibleElements[0]
+          ? 'translate-y-0 opacity-100'
           : 'translate-y-10 opacity-0'
-      }`}>
+        }`}>
         <div className="relative">
           <div className="flex animate-scroll whitespace-nowrap">
             {[...projects, ...projects, ...projects].map((project, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="text-white font-medium text-xl md:text-2xl mx-8 opacity-60 flex-shrink-0 cursor-pointer hover:opacity-100 hover:scale-[1.3] hover:font-bold transition-all duration-300 hover:text-white"
                 onClick={() => setSelectedProject(project)}
               >
@@ -133,18 +132,16 @@ export function ValueSection() {
         </DialogContent>
       </Dialog>
 
-      <div className="max-w-6xl mx-auto px-4" ref={sectionRef}>
+      <div id="skills" className="max-w-6xl mx-auto px-4" ref={sectionRef}>
         <div className="text-center mb-16">
-          <h2 className={`text-4xl md:text-5xl font-bold text-black mb-6 transition-all duration-500 transform ${
-            visibleElements[1] 
-              ? 'translate-y-0 opacity-100' 
+          <h2 className={`text-4xl md:text-5xl font-bold text-black mb-6 transition-all duration-500 transform ${visibleElements[1]
+              ? 'translate-y-0 opacity-100'
               : 'translate-y-10 opacity-0'
-          }`}>Value in technical excellence.</h2>
-          <p className={`text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed transition-all duration-500 transform ${
-            visibleElements[1] 
-              ? 'translate-y-0 opacity-100' 
+            }`}>Value in technical excellence.</h2>
+          <p className={`text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed transition-all duration-500 transform ${visibleElements[1]
+              ? 'translate-y-0 opacity-100'
               : 'translate-y-10 opacity-0'
-          }`}>
+            }`}>
             I am driven by a desire to solve complex technical challenges. My passion in building robust
             infrastructure and leading projects towards innovative outcomes. I believe in a systematic approach that
             unlocks business value by providing reliable technical solutions.
@@ -152,11 +149,10 @@ export function ValueSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div className={`transition-all duration-700 transform ${
-            visibleElements[3] 
-              ? 'translate-x-0 opacity-100' 
+          <div className={`transition-all duration-700 transform ${visibleElements[3]
+              ? 'translate-x-0 opacity-100'
               : '-translate-x-10 opacity-0'
-          }`}>
+            }`}>
             <h3 className="text-2xl font-bold text-black mb-4">Infrastructure</h3>
             <p className="text-gray-600 leading-relaxed">
               I am IT Expert with AI innovation Full-stack 'Vibe Coder' who thrives on ideation, execution, and optimization,
@@ -164,11 +160,10 @@ export function ValueSection() {
             </p>
           </div>
 
-          <div className={`transition-all duration-700 transform ${
-            visibleElements[4] 
-              ? 'translate-x-0 opacity-100' 
+          <div className={`transition-all duration-700 transform ${visibleElements[4]
+              ? 'translate-x-0 opacity-100'
               : '-translate-x-10 opacity-0'
-          }`}>
+            }`}>
             <h3 className="text-2xl font-bold text-black mb-4">AI Integration</h3>
             <p className="text-gray-600 leading-relaxed">
               I see AI as a vital business tool that allows us to proactively solve complex problems. I learn about user
@@ -177,11 +172,10 @@ export function ValueSection() {
             </p>
           </div>
 
-          <div className={`transition-all duration-700 transform ${
-            visibleElements[5] 
-              ? 'translate-x-0 opacity-100' 
+          <div className={`transition-all duration-700 transform ${visibleElements[5]
+              ? 'translate-x-0 opacity-100'
               : '-translate-x-10 opacity-0'
-          }`}>
+            }`}>
             <h3 className="text-2xl font-bold text-black mb-4">Leadership</h3>
             <p className="text-gray-600 leading-relaxed">
               In my experience, change comes from aligned teams and shared technical vision for people to grow. I am
