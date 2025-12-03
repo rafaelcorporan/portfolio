@@ -203,7 +203,7 @@ export function ContactForm() {
 
         <div className="text-center mb-16">
           <h3 className="text-4xl font-bold text-white mb-4">Resume</h3>
-          <p className="text-gray-400 mb-8">Read about my full story in the resume</p>
+          <p className="text-white mb-8">Read about my full story in the resume</p>
           <Button
             className="bg-white text-black hover:bg-gray-100 px-8 py-3 rounded-full font-medium"
             onClick={() => {

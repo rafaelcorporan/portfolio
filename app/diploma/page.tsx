@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react"
 import Image from "next/image"
 import { X, ChevronLeft, ChevronRight, Brain, Layers, GraduationCap, Wrench } from "lucide-react"
 import { allDiplomas, type Diploma } from "./diplomas-data"
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 
 // Group configuration
 const groups = [
@@ -94,11 +95,10 @@ export default function DiplomaPage() {
                 <div className="flex flex-wrap justify-center gap-4 mb-12">
                     <button
                         onClick={() => setActiveGroup(null)}
-                        className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
-                            activeGroup === null
+                        className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${activeGroup === null
                                 ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg"
                                 : "bg-gray-800 text-gray-300 hover:bg-gray-700"
-                        }`}
+                            }`}
                     >
                         All
                     </button>
@@ -109,11 +109,10 @@ export default function DiplomaPage() {
                             <button
                                 key={group.id}
                                 onClick={() => setActiveGroup(group.id)}
-                                className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 ${
-                                    activeGroup === group.id
+                                className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 ${activeGroup === group.id
                                         ? `bg-gradient-to-r ${group.color} text-white shadow-lg`
                                         : "bg-gray-800 text-gray-300 hover:bg-gray-700"
-                                }`}
+                                    }`}
                             >
                                 <Icon className="w-5 h-5" />
                                 {group.name}
@@ -250,18 +249,16 @@ export default function DiplomaPage() {
                 )}
 
                 {/* Lightbox Modal */}
-                {selectedDiploma && (
-                    <div
-                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-200"
-                        onClick={() => setSelectedDiploma(null)}
-                    >
-                        <div
-                            className="relative max-w-6xl w-full max-h-[90vh] bg-gray-900 rounded-lg overflow-hidden shadow-2xl border border-gray-800 flex flex-col animate-in zoom-in-95 duration-200"
-                            onClick={(e) => e.stopPropagation()}
-                        >
+                <Dialog open={!!selectedDiploma} onOpenChange={(open) => !open && setSelectedDiploma(null)}>
+                    <DialogContent className="max-w-6xl w-full max-h-[90vh] bg-gray-900 border-gray-800 p-0 overflow-hidden">
+                        <DialogTitle className="sr-only">
+                            {selectedDiploma?.title}
+                        </DialogTitle>
+
+                        <div className="relative flex flex-col h-full max-h-[90vh]">
                             <button
                                 onClick={() => setSelectedDiploma(null)}
-                                className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/80 text-white rounded-full transition-colors"
+                                className="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-black/80 text-white rounded-full transition-colors"
                             >
                                 <X className="w-6 h-6" />
                             </button>
@@ -271,7 +268,7 @@ export default function DiplomaPage() {
                                 <>
                                     <button
                                         onClick={handlePrevious}
-                                        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-black/50 hover:bg-black/80 text-white rounded-full transition-colors backdrop-blur-sm group"
+                                        className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 bg-black/50 hover:bg-black/80 text-white rounded-full transition-colors backdrop-blur-sm group"
                                         aria-label="Previous diploma"
                                     >
                                         <ChevronLeft className="w-8 h-8 group-hover:-translate-x-0.5 transition-transform" />
@@ -279,7 +276,7 @@ export default function DiplomaPage() {
 
                                     <button
                                         onClick={handleNext}
-                                        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 bg-black/50 hover:bg-black/80 text-white rounded-full transition-colors backdrop-blur-sm group"
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 bg-black/50 hover:bg-black/80 text-white rounded-full transition-colors backdrop-blur-sm group"
                                         aria-label="Next diploma"
                                     >
                                         <ChevronRight className="w-8 h-8 group-hover:translate-x-0.5 transition-transform" />
@@ -287,37 +284,37 @@ export default function DiplomaPage() {
                                 </>
                             )}
 
-                            <div className="relative w-full flex-1 min-h-[50vh]">
-                                <Image
-                                    src={selectedDiploma.image}
-                                    alt={selectedDiploma.title}
-                                    fill
-                                    className="object-contain p-4"
-                                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                                        // Prevent event from being logged as [object Event]
-                                        e.preventDefault()
-                                        e.stopPropagation()
-                                        // Fallback to placeholder if image doesn't exist
-                                        const target = e.currentTarget as HTMLImageElement
-                                        if (target && target.src !== "/diploma-placeholder.png") {
-                                            target.src = "/diploma-placeholder.png"
-                                        }
-                                    }}
-                                />
+                            <div className="relative w-full flex-1 min-h-[50vh] bg-black/50">
+                                {selectedDiploma && (
+                                    <Image
+                                        src={selectedDiploma.image}
+                                        alt={selectedDiploma.title}
+                                        fill
+                                        className="object-contain p-4"
+                                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                                            e.preventDefault()
+                                            e.stopPropagation()
+                                            const target = e.currentTarget as HTMLImageElement
+                                            if (target && target.src !== "/diploma-placeholder.png") {
+                                                target.src = "/diploma-placeholder.png"
+                                            }
+                                        }}
+                                    />
+                                )}
                             </div>
 
-                            <div className="p-6 bg-gray-900 border-t border-gray-800">
-                                <h2 className="text-2xl font-bold text-white mb-2">{selectedDiploma.title}</h2>
-                                {selectedDiploma.date && (
+                            <div className="p-6 bg-gray-900 border-t border-gray-800 z-40">
+                                <h2 className="text-2xl font-bold text-white mb-2">{selectedDiploma?.title}</h2>
+                                {selectedDiploma?.date && (
                                     <p className="text-gray-400 text-sm mb-2">Issued: {selectedDiploma.date}</p>
                                 )}
-                                {selectedDiploma.description && (
+                                {selectedDiploma?.description && (
                                     <p className="text-gray-300">{selectedDiploma.description}</p>
                                 )}
                             </div>
                         </div>
-                    </div>
-                )}
+                    </DialogContent>
+                </Dialog>
             </div>
         </div>
     )

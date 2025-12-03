@@ -5,7 +5,7 @@ import Image from "next/image"
 import { ChevronDown, Play, X, Network, Cloud, Shield, TrendingUp, MessageSquare, Eye, BarChart3, DollarSign, Link, Video, Wallet, Smartphone } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 
 const projects = [
   {
@@ -217,8 +217,8 @@ export function PlaybookContent() {
 
         <div className="text-center max-w-4xl mx-auto px-4 mb-16 relative z-10">
           <div className={`mb-8 transition-all duration-500 transform ${visibleElements[0]
-              ? 'translate-y-0 opacity-100'
-              : 'translate-y-10 opacity-0'
+            ? 'translate-y-0 opacity-100'
+            : 'translate-y-10 opacity-0'
             }`}>
             <span className="text-gray-400 text-sm font-medium tracking-wider uppercase border border-gray-600 px-4 py-2 rounded bg-black/30 backdrop-blur-sm">
               PORTFOLIO
@@ -226,8 +226,8 @@ export function PlaybookContent() {
           </div>
 
           <h1 className={`text-5xl md:text-6xl font-bold text-white mb-8 leading-tight transition-all duration-500 transform ${visibleElements[1]
-              ? 'translate-y-0 opacity-100'
-              : 'translate-y-10 opacity-0'
+            ? 'translate-y-0 opacity-100'
+            : 'translate-y-10 opacity-0'
             }`}>
             Portfolio Projects
             <br />
@@ -237,8 +237,8 @@ export function PlaybookContent() {
           </h1>
 
           <p className={`text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed transition-all duration-500 transform ${visibleElements[2]
-              ? 'translate-y-0 opacity-100'
-              : 'translate-y-10 opacity-0'
+            ? 'translate-y-0 opacity-100'
+            : 'translate-y-10 opacity-0'
             }`}>
             Explore 12 comprehensive projects showcasing expertise across networking, cloud infrastructure,
             AI integration, and full-stack development. Click any project to view a detailed demonstration.
@@ -255,8 +255,8 @@ export function PlaybookContent() {
           {/* Infrastructure & Networking Projects */}
           <div className="mb-16" ref={infrastructureRef} data-section="infrastructure">
             <h2 className={`text-3xl font-bold text-white mb-8 text-center transition-all duration-700 transform ${visibleSections.infrastructure
-                ? 'translate-y-0 opacity-100'
-                : 'translate-y-10 opacity-0'
+              ? 'translate-y-0 opacity-100'
+              : 'translate-y-10 opacity-0'
               }`}>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
                 Infrastructure & Networking
@@ -269,8 +269,8 @@ export function PlaybookContent() {
                   <Card
                     key={project.id}
                     className={`bg-gray-900/50 border-gray-800 hover:border-gray-600 transition-all duration-700 cursor-pointer group hover:bg-gray-900/80 backdrop-blur-sm transform ${visibleSections.infrastructure
-                        ? (index < 2 ? 'translate-x-0 opacity-100' : 'translate-x-0 opacity-100')
-                        : (index < 2 ? '-translate-x-10 opacity-0' : 'translate-x-10 opacity-0')
+                      ? (index < 2 ? 'translate-x-0 opacity-100' : 'translate-x-0 opacity-100')
+                      : (index < 2 ? '-translate-x-10 opacity-0' : 'translate-x-10 opacity-0')
                       }`}
                     style={{ transitionDelay: visibleSections.infrastructure ? `${index * 200}ms` : '0ms' }}
                     onClick={() => handleProjectClick(project)}
@@ -312,8 +312,8 @@ export function PlaybookContent() {
           {/* AI & Automation Projects */}
           <div className="mb-16" ref={aiRef} data-section="ai">
             <h2 className={`text-3xl font-bold text-white mb-8 text-center transition-all duration-700 transform ${visibleSections.ai
-                ? 'translate-y-0 opacity-100'
-                : 'translate-y-10 opacity-0'
+              ? 'translate-y-0 opacity-100'
+              : 'translate-y-10 opacity-0'
               }`}>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
                 AI & Automation
@@ -326,8 +326,8 @@ export function PlaybookContent() {
                   <Card
                     key={project.id}
                     className={`bg-gray-900/50 border-gray-800 hover:border-gray-600 transition-all duration-700 cursor-pointer group hover:bg-gray-900/80 backdrop-blur-sm transform ${visibleSections.ai
-                        ? 'translate-y-0 opacity-100'
-                        : 'translate-y-10 opacity-0'
+                      ? 'translate-y-0 opacity-100'
+                      : 'translate-y-10 opacity-0'
                       }`}
                     style={{ transitionDelay: visibleSections.ai ? `${index * 200}ms` : '0ms' }}
                     onClick={() => handleProjectClick(project)}
@@ -369,8 +369,8 @@ export function PlaybookContent() {
           {/* Web & Utilities + Blockchain & IoT Projects */}
           <div className="mb-16" ref={webRef} data-section="web">
             <h2 className={`text-3xl font-bold text-white mb-8 text-center transition-all duration-700 transform ${visibleSections.web
-                ? 'translate-y-0 opacity-100'
-                : 'translate-y-10 opacity-0'
+              ? 'translate-y-0 opacity-100'
+              : 'translate-y-10 opacity-0'
               }`}>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
                 Web & Utilities + Blockchain & IoT
@@ -448,7 +448,7 @@ export function PlaybookContent() {
               </button>
 
               <div className="p-6 border-b border-gray-700">
-                <h2 className="text-2xl font-bold text-white mb-2">{selectedProject.title}</h2>
+                <DialogTitle className="text-2xl font-bold text-white mb-2">{selectedProject.title}</DialogTitle>
                 <p className="text-gray-400 mb-4">{selectedProject.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {selectedProject.technologies.map((tech) => (

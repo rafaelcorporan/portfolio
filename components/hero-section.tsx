@@ -99,7 +99,7 @@ export function HeroSection() {
           }`}>
           <Link href="/skills">
             <Button className="bg-white text-black hover:bg-gray-100 px-8 py-3 rounded-full font-medium">
-              Explore My Skill
+              Explore My Skills
             </Button>
           </Link>
           <Link href="/portfolio">
