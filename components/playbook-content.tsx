@@ -216,23 +216,14 @@ export function PlaybookContent() {
         </div>
 
         <div className="text-center max-w-4xl mx-auto px-4 mb-16 relative z-10">
-          <div className={`mb-8 transition-all duration-500 transform ${visibleElements[0]
-            ? 'translate-y-0 opacity-100'
-            : 'translate-y-10 opacity-0'
-            }`}>
-            <span className="text-gray-400 text-sm font-medium tracking-wider uppercase border border-gray-600 px-4 py-2 rounded bg-black/30 backdrop-blur-sm">
-              PORTFOLIO
-            </span>
-          </div>
 
           <h1 className={`text-5xl md:text-6xl font-bold text-white mb-8 leading-tight transition-all duration-500 transform ${visibleElements[1]
             ? 'translate-y-0 opacity-100'
             : 'translate-y-10 opacity-0'
             }`}>
-            Portfolio Projects
-            <br />
+            <span className="md:inline hidden">Portfolio Projects<br /></span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
-              Interactive Showcase
+              <span className="md:hidden">Portfolio </span><span className="md:inline hidden">Interactive </span>Showcase
             </span>
           </h1>
 
@@ -240,12 +231,13 @@ export function PlaybookContent() {
             ? 'translate-y-0 opacity-100'
             : 'translate-y-10 opacity-0'
             }`}>
-            Explore 12 comprehensive projects showcasing expertise across networking, cloud infrastructure,
-            AI integration, and full-stack development. Click any project to view a detailed demonstration.
+            <span className="md:hidden">Explore 12 projects showcasing expertise across multiple technologies.</span>
+            <span className="hidden md:inline">Explore 12 comprehensive projects showcasing expertise across networking, cloud infrastructure,
+              AI integration, and full-stack development. Click any project to view a detailed demonstration.</span>
           </p>
         </div>
 
-        <ChevronDown className="absolute bottom-8 w-6 h-6 text-gray-400 animate-bounce z-10" />
+        <ChevronDown className="absolute bottom-16 md:bottom-20 w-8 h-8 md:w-10 md:h-10 text-gray-400 animate-bounce z-10" />
       </section>
 
       {/* Projects Grid Section */}
