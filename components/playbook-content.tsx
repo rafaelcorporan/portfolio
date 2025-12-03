@@ -203,7 +203,7 @@ export function PlaybookContent() {
 
   return (
     <>
-      <section className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
+      <section className="min-h-screen flex flex-col justify-start md:justify-center items-center relative overflow-hidden pt-32 md:pt-0 pb-24 md:pb-0">
         {/* Spline Background */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <iframe
@@ -215,9 +215,9 @@ export function PlaybookContent() {
           ></iframe>
         </div>
 
-        <div className="text-center max-w-4xl mx-auto px-4 mb-16 relative z-10">
+        <div className="text-center max-w-4xl mx-auto px-4 mb-8 md:mb-16 relative z-10">
 
-          <h1 className={`text-5xl md:text-6xl font-bold text-white mb-8 leading-tight transition-all duration-500 transform ${visibleElements[1]
+          <h1 className={`text-4xl md:text-6xl font-bold text-white mb-4 md:mb-8 leading-tight transition-all duration-500 transform ${visibleElements[1]
             ? 'translate-y-0 opacity-100'
             : 'translate-y-10 opacity-0'
             }`}>
@@ -227,7 +227,7 @@ export function PlaybookContent() {
             </span>
           </h1>
 
-          <p className={`text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed transition-all duration-500 transform ${visibleElements[2]
+          <p className={`text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed transition-all duration-500 transform ${visibleElements[2]
             ? 'translate-y-0 opacity-100'
             : 'translate-y-10 opacity-0'
             }`}>
@@ -237,7 +237,7 @@ export function PlaybookContent() {
           </p>
         </div>
 
-        <ChevronDown className="absolute bottom-16 md:bottom-20 w-8 h-8 md:w-10 md:h-10 text-gray-400 animate-bounce z-10" />
+        <ChevronDown className="absolute bottom-16 md:bottom-20 w-12 h-12 md:w-12 md:h-12 text-white animate-bounce z-10" />
       </section>
 
       {/* Projects Grid Section */}
