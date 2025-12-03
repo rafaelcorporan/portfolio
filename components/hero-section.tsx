@@ -89,8 +89,8 @@ export function HeroSection() {
           ? 'translate-y-0 opacity-100'
           : 'translate-y-10 opacity-0'
           }`}>
-          Building complete solutions: APIs, databases, cloud infrastructure, AI features, and intuitive frontends.
-          <span className="hidden md:inline"> Expert in modern frameworks and AI/automation (n8n). Bridging complex challenges and business outcomes.</span>
+          Building complete solutions<span className="hidden md:inline">: APIs, databases, cloud infrastructure, AI features, and intuitive frontends.
+            Expert in modern frameworks and AI/automation (n8n). Bridging complex challenges and business outcomes.</span>
         </p>
 
         <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-500 transform pointer-events-auto ${visibleElements[4]
