@@ -7,53 +7,25 @@ import Link from "next/link"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
-  const [isWorkDropdownOpen, setIsWorkDropdownOpen] = useState(false)
   const [isDiplomaDropdownOpen, setIsDiplomaDropdownOpen] = useState(false)
-  const [isMobileWorkOpen, setIsMobileWorkOpen] = useState(false)
   const [isMobileDiplomaOpen, setIsMobileDiplomaOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
   const diplomaDropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsWorkDropdownOpen(false)
-      }
       if (diplomaDropdownRef.current && !diplomaDropdownRef.current.contains(event.target as Node)) {
         setIsDiplomaDropdownOpen(false)
       }
     }
 
-    if (isWorkDropdownOpen || isDiplomaDropdownOpen) {
+    if (isDiplomaDropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside)
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isWorkDropdownOpen, isDiplomaDropdownOpen])
-
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Resume", href: "/resume" },
-    { name: "Portfolio", href: "/portfolio" },
-    { name: "Contact", href: "/contact" },
-  ]
-
-  const projects = [
-    { name: "Enterprise Network Monitoring", subtitle: "Real-time VLAN health tracking", href: "https://network-dashboard.pages.dev/#/login" },
-    { name: "Cloud Migration Portal", subtitle: "Automated cloud workflows", href: "https://f52b449c.cloud-migration.pages.dev/" },
-    { name: "Secure IoT Platform", subtitle: "Zero-trust device authentication", href: "https://2cfce982.iotmanager.pages.dev/login/" },
-    { name: "Predictive Maintenance", subtitle: "AI-driven predictive analytics", href: "https://predictive-maintenance.pages.dev/" },
-    { name: "AI Customer Support", subtitle: "Intelligent chatbot with RAG", href: "https://aisupport.pages.dev/" },
-    { name: "AI Threat Detection", subtitle: "PyTorch-based anomaly detection", href: "https://security-threat-detection.pages.dev/" },
-    { name: "Data Graphs Converter", subtitle: "CSV to interactive visualizations", href: "https://data-graphs.pages.dev/" },
-    { name: "Financial Analytics", subtitle: "Real-time crypto tracking", href: "https://financial-dash.pages.dev/" },
-    { name: "URL Shortener - Yuupi", subtitle: "Custom link management", href: "https://url-shorter-3ct.pages.dev/login/" },
-    { name: "Online Video Converter", subtitle: "Media processing tool", href: "https://video-converter-bg8.pages.dev/" },
-    { name: "IoT Dashboard", subtitle: "Device management interface", href: "https://iot-dash.pages.dev/" },
-    { name: "WePay Crypto Wallet", subtitle: "Multi-signature wallet", href: "https://wepay-crypto.pages.dev/" }
-  ]
+  }, [isDiplomaDropdownOpen])
 
   const diplomaGroups = [
     { name: "AI", subtitle: "8 certificates", href: "/diploma?group=ai", count: 8 },
@@ -76,45 +48,6 @@ export function Navigation() {
             <Link href="/" className="text-gray-300 hover:text-white transition-colors">
               Home
             </Link>
-
-            {/* Work Dropdown */}
-            <div
-              ref={dropdownRef}
-              className="relative"
-              onMouseEnter={() => setIsWorkDropdownOpen(true)}
-            >
-              <button
-                className="text-gray-300 hover:text-white transition-colors flex items-center gap-1"
-                onClick={() => setIsWorkDropdownOpen(!isWorkDropdownOpen)}
-              >
-                Work
-                <ChevronDown className={`w-4 h-4 transition-transform ${isWorkDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-
-              {isWorkDropdownOpen && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[800px] bg-black/95 backdrop-blur-sm border border-gray-700 rounded-lg p-6 shadow-2xl z-50">
-                  <div className="grid grid-cols-3 gap-6">
-                    {projects.map((project, index) => (
-                      <Link
-                        key={index}
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group block hover:bg-gray-800/50 p-3 rounded transition-colors"
-                        onClick={() => setIsWorkDropdownOpen(false)}
-                      >
-                        <h4 className="text-white text-xs font-medium group-hover:text-gray-200 transition-colors">
-                          {project.name}
-                        </h4>
-                        <p className="text-gray-400 mt-1" style={{ fontSize: '0.625rem' }}>
-                          {project.subtitle}
-                        </p>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
 
             {/* Resume */}
             <Link href="/resume" className="text-gray-300 hover:text-white transition-colors">
@@ -188,9 +121,6 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <Button variant="ghost" size="icon" className="md:hidden text-white" onClick={() => {
             setIsOpen(!isOpen)
-            if (isOpen) {
-              setIsMobileWorkOpen(false)
-            }
           }}>
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </Button>
@@ -207,38 +137,6 @@ export function Navigation() {
             >
               Home
             </Link>
-
-            {/* Work Dropdown for Mobile */}
-            <div className="py-2">
-              <button
-                className="w-full text-left text-gray-300 hover:text-white transition-colors flex items-center justify-between"
-                onClick={() => setIsMobileWorkOpen(!isMobileWorkOpen)}
-              >
-                Work
-                <ChevronDown className={`w-4 h-4 transition-transform ${isMobileWorkOpen ? 'rotate-180' : ''}`} />
-              </button>
-
-              {isMobileWorkOpen && (
-                <div className="mt-2 pl-4 space-y-2">
-                  {projects.map((project, index) => (
-                    <Link
-                      key={index}
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-gray-400 hover:text-white transition-colors py-2 text-sm"
-                      onClick={() => {
-                        setIsOpen(false)
-                        setIsMobileWorkOpen(false)
-                      }}
-                    >
-                      <div className="font-medium">{project.name}</div>
-                      <div className="text-xs text-gray-500 mt-1">{project.subtitle}</div>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
 
             {/* Resume Link */}
             <Link
