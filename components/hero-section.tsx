@@ -27,34 +27,6 @@ export function HeroSection() {
     }
   }, [])
 
-  useEffect(() => {
-    // IntersectionObserver for scroll-based reveal (up and down)
-    const observer = new window.IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleElements((prev) => {
-              const newVisible = [...prev]
-              for (let i = 0; i < 5; i++) newVisible[i] = true
-              return newVisible
-            })
-          } else {
-            setVisibleElements((prev) => {
-              const newVisible = [...prev]
-              for (let i = 0; i < 5; i++) newVisible[i] = false
-              return newVisible
-            })
-          }
-        })
-      },
-      { threshold: 0.2 }
-    )
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <section ref={sectionRef} className="min-h-screen bg-black flex flex-col justify-center items-center relative overflow-hidden">
       {/* Spline Background */}
