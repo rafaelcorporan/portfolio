@@ -107,7 +107,7 @@ export function SkillsContent() {
     }, [])
 
     return (
-        <section className="py-20">
+        <section className="py-20 bg-white">
             <div className="max-w-4xl mx-auto px-4">
                 <div className="flex justify-between items-center mb-12">
                     <h1 className="text-4xl font-bold text-black">Skills</h1>
@@ -132,8 +132,8 @@ export function SkillsContent() {
                         <Card
                             key={index}
                             className={`bg-gray-100 border-none hover:shadow-lg hover:scale-[1.02] transition-all duration-500 transform ${visibleCards[index]
-                                    ? 'translate-y-0 opacity-100'
-                                    : 'translate-y-10 opacity-0'
+                                ? 'translate-y-0 opacity-100'
+                                : 'translate-y-10 opacity-0'
                                 }`}
                         >
                             <CardContent className="p-8">
