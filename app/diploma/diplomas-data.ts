@@ -1,6 +1,6 @@
 /**
  * Diploma and Certificate Data
- * Organized by groups: AI, Mix, IT Trainings, Industrial Mechanic
+ * Organized by groups: AI, IT Trainings, Others
  */
 
 export type Diploma = {
@@ -10,7 +10,7 @@ export type Diploma = {
     description?: string
     image: string
     pdfUrl?: string
-    group: "ai" | "mix" | "it-trainings" | "industrial-mechanic"
+    group: "ai" | "others" | "it-trainings"
 }
 
 // AI Group Diplomas
@@ -177,55 +177,9 @@ const itTrainingsDiplomas: Diploma[] = [
     }
 ]
 
-// Industrial Mechanic Group Diplomas
-const industrialMechanicDiplomas: Diploma[] = [
-    {
-        id: "professional-aptitude-certificate",
-        title: "Professional Aptitude Certificate",
-        description: "INFOTEP - Certificado de Aptitud Profesional (Professional Aptitude Certificate) in General Mechanics",
-        date: "October 1999",
-        image: "/diplomas/industrial-mechanic/scan0026.jpg",
-        pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
-        group: "industrial-mechanic"
-    },
-    {
-        id: "tool-sharpener",
-        title: "Tool Sharpener Certificate",
-        description: "INFOTEP - Certificado de Aptitud Profesional as AFILADOR DE HERRAMIENTAS (Tool Sharpener) in General Mechanics",
-        image: "/diplomas/industrial-mechanic/scan0027.jpg",
-        pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
-        group: "industrial-mechanic"
-    },
-    {
-        id: "turner-lathe-operator",
-        title: "Turner / Lathe Operator Certificate",
-        description: "INFOTEP - Certificado de Aptitud Profesional as TORNERO (Turner/Lathe Operator) in General Mechanics",
-        date: "April 28, 1999",
-        image: "/diplomas/industrial-mechanic/scan0028.jpg",
-        pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
-        group: "industrial-mechanic"
-    },
-    {
-        id: "milling-machine-operator",
-        title: "Milling Machine Operator Certificate",
-        description: "INFOTEP - Certificado de Aptitud Profesional as FRESADOR (Milling Machine Operator) in General Mechanics",
-        date: "August 2, 1999",
-        image: "/diplomas/industrial-mechanic/scan0029.jpg",
-        pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
-        group: "industrial-mechanic"
-    },
-    {
-        id: "industrial-mechanics-assistant",
-        title: "Industrial Mechanics Assistant Certificate",
-        description: "INFOTEP - Certificado de Aptitud Profesional as AUXILIAR DE MECANICA INDUSTRIAL (Industrial Mechanics Assistant) in General Mechanics",
-        image: "/diplomas/industrial-mechanic/scan0030.jpg",
-        pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
-        group: "industrial-mechanic"
-    }
-]
 
-// Mix Group Diplomas
-const mixDiplomas: Diploma[] = [
+// Others Group Diplomas
+const othersDiplomas: Diploma[] = [
     {
         id: "instituto-biblico-jorge-muller",
         title: "Theological Studies Diploma",
@@ -233,7 +187,7 @@ const mixDiplomas: Diploma[] = [
         date: "July 6, 2015",
         image: "/diplomas/mix/scan0003.jpg",
         pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
-        group: "mix"
+        group: "others"
     },
     {
         id: "basic-container-handling",
@@ -242,7 +196,7 @@ const mixDiplomas: Diploma[] = [
         date: "2003",
         image: "/diplomas/mix/scan0009.jpg",
         pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
-        group: "mix"
+        group: "others"
     },
     {
         id: "operations-management-diploma",
@@ -251,7 +205,7 @@ const mixDiplomas: Diploma[] = [
         date: "November 15, 2004",
         image: "/diplomas/mix/scan0012.jpg",
         pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
-        group: "mix"
+        group: "others"
     },
     {
         id: "basic-industrial-safety",
@@ -260,7 +214,7 @@ const mixDiplomas: Diploma[] = [
         date: "May 2006",
         image: "/diplomas/mix/scan0020.jpg",
         pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
-        group: "mix"
+        group: "others"
     },
     {
         id: "general-high-school-diploma",
@@ -269,7 +223,7 @@ const mixDiplomas: Diploma[] = [
         date: "December 2, 2001",
         image: "/diplomas/mix/scan0034.jpg",
         pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
-        group: "mix"
+        group: "others"
     },
     {
         id: "computer-technician",
@@ -278,7 +232,51 @@ const mixDiplomas: Diploma[] = [
         date: "August 28, 1999",
         image: "/diplomas/mix/scan0035.jpg",
         pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
-        group: "mix"
+        group: "others"
+    },
+    // Moved from Industrial Mechanic
+    {
+        id: "professional-aptitude-certificate",
+        title: "Professional Aptitude Certificate",
+        description: "INFOTEP - Certificado de Aptitud Profesional (Professional Aptitude Certificate) in General Mechanics",
+        date: "October 1999",
+        image: "/diplomas/industrial-mechanic/scan0026.jpg",
+        pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
+        group: "others"
+    },
+    {
+        id: "tool-sharpener",
+        title: "Tool Sharpener Certificate",
+        description: "INFOTEP - Certificado de Aptitud Profesional as AFILADOR DE HERRAMIENTAS (Tool Sharpener) in General Mechanics",
+        image: "/diplomas/industrial-mechanic/scan0027.jpg",
+        pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
+        group: "others"
+    },
+    {
+        id: "turner-lathe-operator",
+        title: "Turner / Lathe Operator Certificate",
+        description: "INFOTEP - Certificado de Aptitud Profesional as TORNERO (Turner/Lathe Operator) in General Mechanics",
+        date: "April 28, 1999",
+        image: "/diplomas/industrial-mechanic/scan0028.jpg",
+        pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
+        group: "others"
+    },
+    {
+        id: "milling-machine-operator",
+        title: "Milling Machine Operator Certificate",
+        description: "INFOTEP - Certificado de Aptitud Profesional as FRESADOR (Milling Machine Operator) in General Mechanics",
+        date: "August 2, 1999",
+        image: "/diplomas/industrial-mechanic/scan0029.jpg",
+        pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
+        group: "others"
+    },
+    {
+        id: "industrial-mechanics-assistant",
+        title: "Industrial Mechanics Assistant Certificate",
+        description: "INFOTEP - Certificado de Aptitud Profesional as AUXILIAR DE MECANICA INDUSTRIAL (Industrial Mechanics Assistant) in General Mechanics",
+        image: "/diplomas/industrial-mechanic/scan0030.jpg",
+        pdfUrl: "https://drive.google.com/file/d/[FILE_ID]/view",
+        group: "others"
     }
 ]
 
@@ -286,7 +284,6 @@ const mixDiplomas: Diploma[] = [
 export const allDiplomas: Diploma[] = [
     ...aiDiplomas,
     ...itTrainingsDiplomas,
-    ...industrialMechanicDiplomas,
-    ...mixDiplomas
+    ...othersDiplomas
 ]
 

@@ -1,13 +1,9 @@
-"use client"
-
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
-import emailjs from '@emailjs/browser'
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -18,6 +14,7 @@ export function ContactForm() {
   const [selectedProject, setSelectedProject] = useState<{ title: string, videoUrl: string } | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState<string>("")
 
   const projects = [
     { title: "Enterprise Network Monitoring", videoUrl: "/1.webm" },
@@ -64,38 +61,36 @@ export function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Validate form before submission
     if (!validateForm()) {
       return
     }
 
     setIsSubmitting(true)
     setSubmitStatus('idle')
+    setErrorMessage("")
     setValidationErrors({})
 
     try {
-      // Initialize EmailJS here to avoid SSR issues
-      emailjs.init('STHfOFB5LJzn3I9Jn')
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
 
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        message: formData.message,
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
       }
-
-      await emailjs.send(
-        'service_0i2abk7',
-        'template_jbwlvlv',
-        templateParams,
-        'STHfOFB5LJzn3I9Jn'
-      )
 
       setSubmitStatus('success')
       setFormData({ name: '', email: '', message: '' })
-      setValidationErrors({})
     } catch (error) {
-      console.error('EmailJS error:', error)
+      console.error('Submission error:', error)
       setSubmitStatus('error')
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message')
     } finally {
       setIsSubmitting(false)
     }

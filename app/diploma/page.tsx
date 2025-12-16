@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import Image from "next/image"
-import { X, ChevronLeft, ChevronRight, Brain, Layers, GraduationCap, Wrench } from "lucide-react"
+import { X, ChevronLeft, ChevronRight, Brain, Layers, GraduationCap } from "lucide-react"
 import { allDiplomas, type Diploma } from "./diplomas-data"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 
@@ -15,23 +15,18 @@ const groups = [
         color: "from-purple-400 to-pink-600"
     },
     {
-        id: "mix",
-        name: "Mix",
-        icon: Layers,
-        color: "from-blue-400 to-cyan-600"
-    },
-    {
         id: "it-trainings",
         name: "IT Trainings",
         icon: GraduationCap,
         color: "from-green-400 to-emerald-600"
     },
     {
-        id: "industrial-mechanic",
-        name: "Industrial Mechanic",
-        icon: Wrench,
-        color: "from-orange-400 to-red-600"
+        id: "others",
+        name: "Others",
+        icon: Layers,
+        color: "from-blue-400 to-cyan-600"
     }
+
 ]
 
 const diplomas = allDiplomas
@@ -44,7 +39,7 @@ export default function DiplomaPage() {
     useEffect(() => {
         const params = new URLSearchParams(window.location.search)
         const groupParam = params.get('group')
-        if (groupParam && ['ai', 'mix', 'it-trainings', 'industrial-mechanic'].includes(groupParam)) {
+        if (groupParam && ['ai', 'others', 'it-trainings'].includes(groupParam)) {
             setActiveGroup(groupParam)
         }
     }, [])
@@ -96,8 +91,8 @@ export default function DiplomaPage() {
                     <button
                         onClick={() => setActiveGroup(null)}
                         className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${activeGroup === null
-                                ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg"
-                                : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                            ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg"
+                            : "bg-gray-800 text-gray-300 hover:bg-gray-700"
                             }`}
                     >
                         All
@@ -110,8 +105,8 @@ export default function DiplomaPage() {
                                 key={group.id}
                                 onClick={() => setActiveGroup(group.id)}
                                 className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2 ${activeGroup === group.id
-                                        ? `bg-gradient-to-r ${group.color} text-white shadow-lg`
-                                        : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                                    ? `bg-gradient-to-r ${group.color} text-white shadow-lg`
+                                    : "bg-gray-800 text-gray-300 hover:bg-gray-700"
                                     }`}
                             >
                                 <Icon className="w-5 h-5" />

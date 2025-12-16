@@ -29,9 +29,8 @@ export function Navigation() {
 
   const diplomaGroups = [
     { name: "AI", subtitle: "8 certificates", href: "/diploma?group=ai", count: 8 },
-    { name: "Mix", subtitle: "6 certificates", href: "/diploma?group=mix", count: 6 },
     { name: "IT Trainings", subtitle: "11 certificates", href: "/diploma?group=it-trainings", count: 11 },
-    { name: "Industrial Mechanic", subtitle: "5 certificates", href: "/diploma?group=industrial-mechanic", count: 5 }
+    { name: "Others", subtitle: "11 certificates", href: "/diploma?group=others", count: 11 }
   ]
 
   return (
