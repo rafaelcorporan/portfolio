@@ -1,0 +1,122 @@
+Rafael Corporan | Full-Stack Developer & AI Systems Architect
+mobile: (347) 829-4952 | e-mail: rafaelcorporan@gmail.com | portfolio: rafaelcorporan.com
+
+PROFESSIONAL SUMMARY:
+
+Innovative Full-Stack Developer & AI Systems Architect with 10+ years of experience designing secure network
+infrastructures, building cloud-native applications, and integrating large language models (LLMs) into enterprise
+solutions. Skilled in DevOps, automation, and scalable backend systems, with a proven record of leading crossfunctional teams and delivering consulting-grade solutions. Adept at bridging technical depth with business
+strategy to drive digital transformation and operational efficiency.
+
+S K I L L S:
+● CSS 3
+● HTML 5
+● React
+● Next.js
+● TypeScript
+● Web Components
+
+● CSS-in-JS, React Native, Flutter
+● Node.js, Python (FastAPI, Django)
+● Go, Rust, ·WebSockets, WebRTC,
+● WebAssembly
+● Internet marketing
+● PhpMyAdmin
+
+● AWS, Azure, Vercel, Netlify, Cloudflare
+● Lambda, Cloudflare Workers, Vercel (v0)
+● Docker, Kubernetes, GitHub Actions
+● Databases: SQL, NoSQL
+● AI Prompt Engineering
+● Automation (n8n)
+
+PROFESSIONAL EXPERIENCE
+Udara, NYC | Mar 2019 – Sep 2024
+VoIP Network Project Lead - Remote / Multi-site
+Architected and deployed a secure, multi-location VoIP network with centralized DigitalOcean VPS core.
+Implemented encrypted VPN tunneling and optimized Softswitch for high-availability call routing.
+Integrated simulation training platform (Sim Center) and managed dynamic Gateway Registration System.
+Led a team of 5 engineers, managing resources and delivering milestones on schedule.
+
+Tech Alliance NYC | Apr 2014 – Sep 2017
+IT Specialist / Web Administrator
+Provided enterprise desktop/server support and promoted to Web Administrator. • Deployed Oracle DB
+on SUSE Linux; built LAMP stack servers and WordPress sites. • Automated MySQL backups via Bash/
+cron; maintained mixed Windows/Linux environments.
+
+OnuxTech, Freeport NY |
+
+Feb 2008 - Nov 2013
+
+IT Consultant
+Designed and constructed data centers from ground up; implemented structured cabling and
+redundancy. Increased application uptime >99.5% by enhancing fail over and reducing mean-time-torecovery.
+
+DP World Caucedo | Oct/2003 – May/2007
+System Engineer & Network Admin
+Major Accomplishments
+Promoted from Crane Operator to System Engineer in 9 months.
+Promoted from Operator to System Engineer to Network Administrator within 2 years.
+Hardware & Systems Deployment
+Deployed and maintained HP/Dell workstations and servers.
+Performed Windows/Linux OS imaging and cloning with Acronis and Norton Ghost.
+Enterprise Networking & Security
+Configured Cisco Catalyst switches (2955, 4506): VLANs, password recovery, IOS upgrades/backups.
+Set up wireless networks: Cisco Aironet APs, Linksys WRT54G/WAP54G, SSID, WEP.
+Configured Cisco 2600 routers with OSPF, EIGRP, NAT, and secure remote access.
+Microsoft Infrastructure & High Availability
+Administered Active Directory, DNS, DHCP, DFS.
+
+EDUCATION & CERTS
+
+February 2003 - November 2025
+
+Panduit Network
+Formerly Voice and Data Cabling.
+
+UNICDA) Dominican American University
+Diploma in Management of Operations
+
+Cisco Academy / ITLA
+HP IT Essentials I PC Hardware and Software
+HP IT Essentials II Network Operating Systems
+
+Borough of Manhattan Community College
+
+CompTIA A+
+
+Cisco Academy / ITLA
+Network Security I
+Network Security II
+GNU/Linux Structure
+Linux Red Hat 7
+
+Test-Out
+Managing & Maintaining Windows Server 2003
+Planning a Server 2003 Network Infrastructure
+Implementing an Active Directory Infrastructure
+Installing, Configuring & Admin Windows XP Pro
+
+Cisco Certified Network Associate (CCNA)
+CCNA 1: Networking Basics Cisco system
+CCNA 2: Routers and Routing Basics Cisco system
+CCNA 3: Switching Basics & Intermediate Routing
+CCNA 4: WAN Technologies
+Install, configure, & troubleshoot Cisco nets devices
+
+AI - Trainings
+OpenAI Academy | Prompt Engineering, Workflow Automation
+Google Cloud AI | Implementation & Deployment
+Anthropic Claude Academy | AI Fluency, Claude API, Bedrock,
+Vertex AI, Model Context Protocol
+ANTHROPIC (Claude AI)
+• AI Fluency: Framework & Foundations
+• Claude Code in Action
+• Claude with Amazon Bedrock
+• Claude with Google Cloud's Vertex AI
+• Claude with the Anthropic API
+• Introduction to Model Context Protocol
+• Teaching AI Fluency
+• Model Context Protocol: Advanced Topics
+
+

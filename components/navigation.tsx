@@ -58,6 +58,11 @@ export function Navigation() {
               Portfolio
             </Link>
 
+            {/* Experiences */}
+            <Link href="/experiences" className="text-gray-300 hover:text-white transition-colors">
+              Experiences
+            </Link>
+
             {/* Diploma Dropdown */}
             <div
               ref={diplomaDropdownRef}
@@ -153,6 +158,15 @@ export function Navigation() {
               onClick={() => setIsOpen(false)}
             >
               Portfolio
+            </Link>
+
+            {/* Experiences Link */}
+            <Link
+              href="/experiences"
+              className="block text-gray-300 hover:text-white transition-colors py-2"
+              onClick={() => setIsOpen(false)}
+            >
+              Experiences
             </Link>
 
             {/* Diploma Dropdown for Mobile */}
